@@ -1,0 +1,7 @@
+tenancy_ocid          = "ocid1.tenancy.oc1..REPLACE_ME"
+user_ocid             = "ocid1.user.oc1..REPLACE_ME"
+fingerprint           = "REPLACE_ME"
+private_key_path      = "/path/to/oci_api_key.pem"
+home_region           = "eu-frankfurt-1" # Replace with your tenancy home region.
+parent_compartment_id = "ocid1.compartment.oc1..REPLACE_ME" # Or a tenancy OCID.
+enable_delete         = false
