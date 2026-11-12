@@ -40,7 +40,7 @@ terraform-oci-fk-compartment/
 
 ## 🚀 Usage
 
-Use Terraform/OpenTofu >= 1.6 and `oracle/oci ~> 6.0`. Configure authentication in the root configuration and pass its home-region provider:
+Use Terraform/OpenTofu >= 1.6 and `oracle/oci >= 6.0.0, < 10.0.0`. Configure authentication in the root configuration and pass its home-region provider:
 
 ```hcl
 provider "oci" {
@@ -128,6 +128,18 @@ The [tests](tests/README.md) use mocked OCI and plan-only runs. They check defau
 ## Support and contributions
 
 Read [SUPPORT.md](SUPPORT.md). Include sanitized reproduction steps, the affected example, OpenTofu/provider versions and relevant validation output in issues. Pull requests are welcome.
+
+## OCI provider compatibility
+
+Starting with **v0.1.1**, the root module accepts `oracle/oci >= 6.0.0, < 10.0.0`, including OCI 9.x while preserving the existing OCI 6.x lower bound. No module inputs, outputs or resource addresses change.
+
+The compatibility CI matrix pins **6.37.0** and **9.12.1**, using OpenTofu **1.11.6** for validation and mock-capable test execution. The root suite contains 10 mocked, plan-only tests. Local checks on **2026-11-12** passed formatting, initialization, validation and all **10 root tests on each provider version**. Other provider versions within the allowed range have not been individually verified.
+
+The same resource configuration was exercised with OCI **9.12.1** in the BaseDB cross-region lab on **2026-11-12**. The lab compartment was created in the home region and intentionally retained during cleanup with `enable_delete = false`. This verifies the lab's composition, not every optional module feature.
+
+Existing callers can keep OCI 6.x. A consuming stack must allow the selected provider version in every module and review its plan before upgrading. Standalone examples may retain independent OCI 6.x constraints and pinned dependency tags.
+
+---
 
 ## 🪪 License
 
