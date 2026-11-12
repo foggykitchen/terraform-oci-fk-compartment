@@ -136,3 +136,9 @@ Licensed under the **Universal Permissive License (UPL), Version 1.0**. See [LIC
 ---
 
 © 2026 [FoggyKitchen.com](https://foggykitchen.com) - Cloud. Code. Clarity.
+
+## OCI provider compatibility
+
+The root module accepts `oracle/oci >= 6.0.0, < 10.0.0`. Compatibility checks on 2026-11-09 passed with **6.37.0** and **9.12.1**. All **10 root module mock tests** passed on each version. The CI matrix checks both provider versions. Other versions within the allowed range have not been individually tested.
+
+This broadens the provider constraint without changing resource addresses or inputs. Existing deployments can retain OCI 6.x; upgrading a consuming stack requires compatible constraints in every module and review of its plan. Example configurations may still pin OCI 6.x independently. These checks do not constitute a live deployment test of this module on OCI 9.x.
