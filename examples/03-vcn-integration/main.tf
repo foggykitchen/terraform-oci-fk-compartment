@@ -9,7 +9,7 @@ module "compartment" {
 }
 
 module "vcn" {
-  source    = "git::https://github.com/foggykitchen/terraform-oci-fk-vcn.git?ref=v0.2.0"
+  source    = "git::https://github.com/foggykitchen/terraform-oci-fk-vcn.git?ref=v0.3.0" # TODO: tag not yet released
   providers = { oci = oci.workload }
 
   compartment_ocid = module.compartment.compartment_id
