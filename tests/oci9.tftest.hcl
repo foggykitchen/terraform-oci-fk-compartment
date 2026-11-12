@@ -1,0 +1,15 @@
+# Synthetic fixtures only. Every run is plan-only; no tenancy credentials are used.
+mock_provider "oci" {
+  mock_resource "oci_identity_compartment" {
+    defaults = { "id" = "MOCK_OCID_COMPARTMENT", "inactive_state" = "mock-value", "is_accessible" = false, "state" = "AVAILABLE", "time_created" = "mock-value" }
+  }
+}
+variables {
+  parent_compartment_id = "MOCK_OCID_COMPARTMENT"
+  name                  = "compatibility"
+  description           = "compatibility"
+}
+
+run "oci9_plan" {
+  command = plan
+}
